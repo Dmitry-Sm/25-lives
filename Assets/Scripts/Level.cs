@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Level : MonoBehaviour
 {
@@ -12,17 +13,25 @@ public class Level : MonoBehaviour
     private Player player;
     [SerializeField]
     private GameObject deadPlayer;
+    [SerializeField]
+    private Text lifeCounter;
+    [SerializeField]
+    private GameObject levelCompletePanel;
+    [SerializeField]
+    private GameObject levelFailedPanel;
     
     [HideInInspector]
     public int number;
 
-    private int lifes = 25;
-    private float timer = 0f;
+    private int lives = 5;
+    // private float timer = 0f;
 
 
     void Start()
     {
-        timer = Time.time;
+        Time.timeScale = 1;
+        lifeCounter.text = "Lives: " + lives;
+        // timer = Time.time;
         player.finishEvent += Complete;
         player.deadEvent += Restart;
         player.transform.position = start.transform.position;
@@ -31,9 +40,10 @@ public class Level : MonoBehaviour
 
     void Restart()
     {
-        if (--lifes <= 0)
+        lifeCounter.text = "Lives: " + --lives;
+        if (lives <= 0)
         {
-            Failure();
+            Failed();
         }
         Transform dp = Instantiate(deadPlayer).transform;
         dp.position = player.transform.position;
@@ -42,13 +52,20 @@ public class Level : MonoBehaviour
             
     }
 
-    void Complete()
+    void Pause()
     {
-        Debug.Log("Level complete!");
+        Time.timeScale = 0;
     }
 
-    void Failure()
+    void Complete()
     {
+        levelCompletePanel.SetActive(true);
+        Pause();
+    }
 
+    void Failed()
+    {
+        Pause();
+        levelFailedPanel.SetActive(true);
     }
 }
