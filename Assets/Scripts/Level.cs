@@ -23,7 +23,7 @@ public class Level : MonoBehaviour
     [HideInInspector]
     public int number;
 
-    private int lives = 5;
+    private int lives = 25;
     // private float timer = 0f;
 
 

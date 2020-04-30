@@ -591,8 +591,8 @@ MonoBehaviour:
   LevelListPanel: {fileID: 164556761}
   levels:
   - {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-  - {fileID: 102900000, guid: 2049959daaf20fd439a22bfb21874463, type: 3}
-  - {fileID: 102900000, guid: 9ff0e9bf0e58d97499f54a14bb26b95b, type: 3}
+  - {fileID: 102900000, guid: af2daafb650d58642bd77e533525df87, type: 3}
+  - {fileID: 102900000, guid: 997a50a88fc12c74a95a9e5493247806, type: 3}
 --- !u!114 &512897816
 MonoBehaviour:
   m_ObjectHideFlags: 0
