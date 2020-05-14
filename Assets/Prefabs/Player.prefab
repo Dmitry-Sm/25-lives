@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322450723845917085}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.242567, y: 1.4634528, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 8
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -161,21 +161,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawDebugRaycast: 1
-  speed: 6
+  speed: 12
   maxFallSpeed: 30
-  jumpForce: 30
-  jumpHoldForce: 0.1
-  jumpHoldDuration: 0.1
-  wallJumpHoldDuration: 0.5
-  wallJumpDuration: 0.3
+  jumpForce: 18
+  jumpHoldForce: 1
+  jumpHoldDuration: 0.4
+  wallJumpHoldDuration: 0.3
+  wallJumpDuration: 0.4
   wallMaxFallSpeed: 5
-  wallJumpForce: {x: 30, y: 10}
-  jumpVelocityPriorety: {x: 0.15, y: 0.04}
+  cayotTime: 0.2
+  wallJumpForce: {x: 30, y: 12}
   groundDistance: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  isOnGround: 0
+  isOnGround: 1
   isJumping: 0
   isClimb: 0
   isTouchWall: 0

@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpHoldDuration = 0.1f;
     public float wallJumpDuration = 0.4f;
     public float wallMaxFallSpeed = 5f;
+    public float cayotTime = 0.2f;
     public Vector2 wallJumpForce = new Vector2(25f, 15f);
-    public Vector2 jumpVelocityPriorety = new Vector2(0.1f, 0.01f);
 
     [Header("Envirement Check Properties")]
     // public float footOfset = 0.4f;
@@ -31,9 +31,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isClimb;
     public bool isTouchWall;
 
+    public delegate void EventType(PlayerMovement pm);
+    public event EventType jumpEvent;
+    public event EventType fallEvent;
+
+    public Rigidbody2D rigidBody {get; private set;}
+
     PlayerInput input;
     BoxCollider2D bodyCollider;
-    Rigidbody2D rigidBody;
 
     Vector2 velocity;
     Vector2 wallJumpVelocity;
@@ -42,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
     float wallJumpTime;
     float playerWidth;
     float playerHeight;
+    float onGroundTime;
+    float onWallTime;
+    bool lastWallIsLeft;
+    float maxVelocity = 0f;
     int direction = 1;
     const float smallAmount = 0.05f;
         
@@ -57,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumpVelocity = new Vector2(0f, 0f);
         inputVelocity = new Vector2(0f, 0f);
         wallJumpTime = Time.time;
+        onGroundTime = Time.time;
     }
 
     void FixedUpdate() {
@@ -76,6 +86,15 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D rightGroundCheck = Raycast(new Vector2(playerWidth/2f, 0f), Vector2.down, groundDistance);
 
         isOnGround = leftGroundCheck || rightGroundCheck;
+
+        if (isOnGround)
+        {
+            isJumping = false;
+        }
+        else
+        {
+            Fall();
+        }
     }
 
     void GroundMovement()
@@ -91,20 +110,32 @@ public class PlayerMovement : MonoBehaviour
 
     void MidAirMovement()
     {
+        float time = Time.time;
         WallJump();
-        if (isOnGround && !isJumping && input.jumpPressed)
+        if (isOnGround)
         {
-            isOnGround = false;
-            isJumping = true;
-
-            jumpTime = Time.time + jumpHoldDuration;
-            velocity.y += jumpForce;
+            onGroundTime = time;
         }
 
-        if (isJumping && jumpTime <= Time.time)
+        if (!isJumping && input.jumpPressed && time < onGroundTime + cayotTime)
         {
-            isJumping = false;
+            Jump();
         }
+
+        if (isJumping && input.jumpHeld && velocity.y > 0f && time < jumpTime + jumpHoldDuration)
+        {
+            velocity.y += jumpHoldForce;
+        }
+        if (velocity.y > maxVelocity)
+        {
+            maxVelocity = velocity.y;
+            Debug.Log(maxVelocity);
+        }
+
+        // if (isJumping && jumpTime <= time)
+        // {
+        //     // isJumping = false;
+        // }
 
         velocity.y = Mathf.Max(velocity.y, -maxFallSpeed);
     }
@@ -113,19 +144,25 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D leftWallCheck = Raycast(new Vector2(-playerWidth/2f, playerHeight/2f), Vector2.left, groundDistance);
         RaycastHit2D rightWallCheck = Raycast(new Vector2(playerWidth/2f, playerHeight/2f), Vector2.right, groundDistance);
+        float time = Time.time;
 
         isTouchWall = leftWallCheck || rightWallCheck;
-
-        if (!isOnGround && isTouchWall && input.jumpPressed && Time.time > wallJumpTime + wallJumpHoldDuration)
+        if (isTouchWall)
         {
-            wallJumpTime = Time.time;
+            lastWallIsLeft = leftWallCheck;
+            onWallTime = time;
+        }
+
+        if (!isOnGround && input.jumpPressed && time > wallJumpTime + wallJumpHoldDuration && time < onWallTime + cayotTime)
+        {
+            wallJumpTime = time;
             wallJumpVelocity = wallJumpForce;
-            wallJumpVelocity.x *= leftWallCheck ? 1f : -1f;
+            wallJumpVelocity.x *= lastWallIsLeft ? 1f : -1f;
         }
         
         if (!isOnGround)
         {   
-            float progress = 1f - (Time.time - wallJumpTime) / wallJumpDuration;
+            float progress = 1f - (time - wallJumpTime) / wallJumpDuration;
             velocity = Vector2.Lerp(velocity, wallJumpVelocity, progress);
             wallJumpVelocity *= 0.9f;
         }
@@ -139,6 +176,24 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Max(velocity.y, -wallMaxFallSpeed);
         }
     }
+
+
+    void Jump()
+    {
+        isOnGround = false;
+        isJumping = true;
+
+        jumpTime = Time.time;
+        velocity.y = jumpForce;
+
+        jumpEvent?.Invoke(this);
+    }
+
+    void Fall()
+    {
+        fallEvent?.Invoke(this);
+    }
+
 
     void FlipDirection()
     {

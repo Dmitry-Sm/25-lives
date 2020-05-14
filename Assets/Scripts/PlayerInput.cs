@@ -43,6 +43,7 @@ public class PlayerInput : MonoBehaviour
     void ProcessInputs()
     {
         horizontal += Input.GetAxis("Horizontal");
+        horizontal = Mathf.Sign(horizontal) * Mathf.Min(1f, Mathf.Abs(horizontal));
 
         jumpPressed |= Input.GetButtonDown("Jump");
         jumpHeld |= Input.GetButton("Jump");
