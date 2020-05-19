@@ -7,6 +7,8 @@ public class Floor : MonoBehaviour
     [SerializeField]
     Material material;
     [SerializeField]
+    Material material2;
+    [SerializeField]
     Player player;
     Vector3 prevPos = new Vector3(0f, 0f, 0f);
 
@@ -24,6 +26,8 @@ public class Floor : MonoBehaviour
 
 
         material.SetVector("_PlayerPosition", pos);
+        material2.SetVector("_PlayerPosition", pos);
         material.SetVector("_PrevPlayerPosition", prevPos);
+        material2.SetVector("_PrevPlayerPosition", prevPos);
     }
 }

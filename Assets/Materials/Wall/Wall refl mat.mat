@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall glow mat
-  m_Shader: {fileID: -6465566751694194690, guid: 3a09624dc1614f3428bbc111df4583c5,
+  m_Name: Wall refl mat
+  m_Shader: {fileID: -6465566751694194690, guid: 744de9917ef2a5b4f8fb2bbb7f0015a6,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -20,12 +20,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_3C04625B:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_3E2A8C23:
+        m_Texture: {fileID: 2800000, guid: ec17c0b6454e71a469d644b9fe8dd4d2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_E465D45F:
+        m_Texture: {fileID: 2800000, guid: efb8566fc0d6d434991cf3edc07e9f1f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AlphaTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 14c5fadcff3b2594e8a45c4980974659, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -36,15 +48,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RelfTex:
+        m_Texture: {fileID: 8400000, guid: 91f4009846c0afb4db88117e67d645d3, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_68AC3614: 8.97
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Vector3_8F3D6212: {r: 0, g: 0, b: 0, a: 0}
-    - Vector3_A6C42598: {r: 0, g: 0, b: 0, a: 0}
+    - PlayerPosition: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_8562C223: {r: 1, g: 1, b: 0, a: 0}
+    - Vector3_CEBCFE54: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _PlayerPosition: {r: 10.405262, g: 0.51499975, b: 0, a: 0}
-    - _PrevPlayerPos: {r: 0.1, g: 0, b: 0, a: 0}
-    - _PrevPlayerPosition: {r: 10.405285, g: 0.5150012, b: 0, a: 0}
+    - _PlayerPosition: {r: 1.485, g: 0.51499975, b: 0, a: 0}
+    - _PrevPlayerPosition: {r: 1.484997, g: 0.5150012, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
