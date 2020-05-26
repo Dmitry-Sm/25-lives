@@ -44,7 +44,15 @@ public class MovingPlatform : MonoBehaviour
         if (Time.time > arrivalTime + waitngTime)
         {
             position += dir;
-            rigidbody.MovePosition(position);
+            if (rigidbody)
+            {
+                rigidbody.MovePosition(position);
+            }
+            else 
+            {
+                transform.position = position;
+            }
+            
             
             foreach (var rb in connectedBodies)
             {
