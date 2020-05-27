@@ -61,6 +61,6 @@ Material:
     - Vector3_CEBCFE54: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _PlayerPosition: {r: 22.88584, g: -10.98499, b: 0, a: 0}
-    - _PrevPlayerPosition: {r: 22.885769, g: -10.984955, b: 0, a: 0}
+    - _PlayerPosition: {r: -7.6804442, g: -14.98499, b: 0, a: 0}
+    - _PrevPlayerPosition: {r: -7.680462, g: -14.984955, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
