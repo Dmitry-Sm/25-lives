@@ -1,4 +1,4 @@
-## 25 lifes
+## 25 lives
 
 ### Unity game
 
