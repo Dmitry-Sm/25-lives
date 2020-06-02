@@ -5,16 +5,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    float prevUpdateSpeed;
+    float prevUpdateSpeed = 0.04f;
     [SerializeField]
-    float prevPrevUpdateSpeed;
+    float prevPrevUpdateSpeed = 0.01f;
 
+    [HideInInspector]
+    public Rigidbody2D rigidbody;
+    
     public delegate void OnDead();
     public event OnDead deadEvent;
 
     public delegate void OnFinish();
     public event OnFinish finishEvent;
-    public Rigidbody2D rigidbody;
     
     public Vector3 prevPosition {get; private set;}
     public Vector3 prevPrevPosition {get; private set;}

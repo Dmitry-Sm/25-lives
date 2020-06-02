@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall glow mat
+  m_Name: Floor glow mat
   m_Shader: {fileID: -6465566751694194690, guid: 154a96bdfa75ea546aad1dad68d27c45,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -38,13 +38,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_68AC3614: 8.97
+    - Vector1_8A805C01: 10
     - _EnableExternalAlpha: 0
     m_Colors:
     - Vector3_8F3D6212: {r: 0, g: 0, b: 0, a: 0}
     - Vector3_A6C42598: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _PlayerPosition: {r: -7.6804385, g: -14.985002, b: 0, a: 0}
+    - _PlayerPosition: {r: -26.903778, g: 11.699801, b: 0, a: 0}
     - _PrevPlayerPos: {r: 0.1, g: 0, b: 0, a: 0}
-    - _PrevPlayerPosition: {r: -7.6804442, g: -14.98499, b: 0, a: 0}
+    - _PrevPlayerPosition: {r: -28.409018, g: 10.572832, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

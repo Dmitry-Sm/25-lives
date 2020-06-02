@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall mat
+  m_Name: Floor mat
   m_Shader: {fileID: -6465566751694194690, guid: baa47093482c5204aae05f3c2fc8e1cd,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA

@@ -5,9 +5,9 @@ using UnityEngine;
 public class Materials : MonoBehaviour
 {
     [SerializeField]
-    Material material;
+    Material floorMaterial;
     [SerializeField]
-    Material material2;
+    Material wallMaterial;
     [SerializeField]
     Player player;
 
@@ -16,10 +16,10 @@ public class Materials : MonoBehaviour
     {
         Vector3 pos = player.gameObject.transform.position;
 
-        material.SetVector("_PlayerPosition", pos);
-        material.SetVector("_PrevPlayerPosition", player.prevPosition);
+        floorMaterial.SetVector("_PlayerPosition", pos);
+        floorMaterial.SetVector("_PrevPlayerPosition", player.prevPosition);
         
-        material2.SetVector("_PlayerPosition", player.prevPosition);
-        material2.SetVector("_PrevPlayerPosition", player.prevPrevPosition);
+        wallMaterial.SetVector("_PlayerPosition", player.prevPosition);
+        wallMaterial.SetVector("_PrevPlayerPosition", player.prevPrevPosition);
     }
 }

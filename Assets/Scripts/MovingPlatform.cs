@@ -6,17 +6,16 @@ public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] List<Transform> targets;
     [SerializeField] float speed;
+    [SerializeField] float waitngTime = 1f;
     
-    Vector3 position = new Vector3(0f, 0f, 0f);
+    Vector3 position;
     Rigidbody2D rigidbody;
-    Rigidbody2D mrb;
     SliderJoint2D joint;
     List<Rigidbody2D> connectedBodies;
     Transform target;
-    int timer = 1;
     int targetIndex = 0;
 
-    float waitngTime = 1f;
+    int timer = 1;
     float arrivalTime = 0f;
 
     void Start()
@@ -31,19 +30,19 @@ public class MovingPlatform : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 offset = target.position - position;
-        Vector3 dir = Vector3.ClampMagnitude(offset, speed * Time.deltaTime);
+        Vector3 difference = target.position - position;
+        Vector3 offset = Vector3.ClampMagnitude(difference, speed);
 
-        if (Vector3.Distance(position, target.position) < 0.1f)
+        if (Vector3.Distance(position, target.position) < speed)
         {
-            target = targets[targetIndex];
             targetIndex = (targetIndex + 1) % targets.Count;
+            target = targets[targetIndex];
             arrivalTime = Time.time;
         }
         
         if (Time.time > arrivalTime + waitngTime)
         {
-            position += dir;
+            position += offset;
             if (rigidbody)
             {
                 rigidbody.MovePosition(position);
@@ -53,43 +52,29 @@ public class MovingPlatform : MonoBehaviour
                 transform.position = position;
             }
             
-            
             foreach (var rb in connectedBodies)
             {
-                rb.position += new Vector2(dir.x, dir.y);
+                rb.position += new Vector2(offset.x, offset.y);
             }
         }
-
     }
 
 
     private void OnCollisionEnter2D(Collision2D other) {
-        float ny = other.GetContact(0).normal.y;
+        float normal = other.GetContact(0).normal.y;
         Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
         
-        if (rb && !connectedBodies.Contains(rb) && ny < 0f)
+        if (rb && !connectedBodies.Contains(rb) && normal < 0f)
         {   
+
             if (other.gameObject.tag == "Player")
             {
                 connectedBodies.Add(rb);
-                Debug.Log("Connect");
                 joint.connectedBody = rb;
                 PlayerMovement pm = other.gameObject.GetComponent<PlayerMovement>();
                 pm.jumpEvent += RemoveConnection;
                 pm.fallEvent += RemoveConnection;
                 rb.interpolation = RigidbodyInterpolation2D.None;
-            }
-            
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other) {
-        Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
-        if (rb)
-        {
-            if (other.gameObject.tag != "Player")
-            {
-                connectedBodies.Remove(rb);
             }
         }
     }
