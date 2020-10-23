@@ -45,7 +45,7 @@ Material:
     - Vector3_A6C42598: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _PlayerPosition: {r: 47.539356, g: 1.0149997, b: 0, a: 0}
+    - _PlayerPosition: {r: -44.98501, g: 1.0149999, b: 0, a: 0}
     - _PrevPlayerPos: {r: 0.1, g: 0, b: 0, a: 0}
-    - _PrevPlayerPosition: {r: 47.539272, g: 1.0150158, b: 0, a: 0}
+    - _PrevPlayerPosition: {r: -44.976967, g: 1.0330663, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
