@@ -37,7 +37,7 @@ public class Level : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        lifeCounter.text = "Lives: " + lives;
+        UpdateLiveLabel();
         // timer = Time.time;
         player.finishEvent += Complete;
         player.deadEvent += Restart;
@@ -48,7 +48,8 @@ public class Level : MonoBehaviour
 
     void Restart()
     {
-        lifeCounter.text = "Lives: " + --lives;
+        lives--;
+        UpdateLiveLabel();
         player.gameObject.SetActive(false);
 
         if (lives <= 0)
@@ -73,6 +74,11 @@ public class Level : MonoBehaviour
         yield return new WaitForSeconds(restartTimeOffset);
         player.gameObject.SetActive(true);
         virtualCamera.Follow = player.gameObject.transform;
+    }
+
+    void UpdateLiveLabel()
+    {
+        lifeCounter.text = "Lives: " + lives;
     }
 
     void Pause()
